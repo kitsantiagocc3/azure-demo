@@ -1,5 +1,5 @@
 # Loads data/plans.json into the Plans table (Azurite locally). Safe to run again:
-# rows are replaced, so the table always matches the file.
+# each plan's row is replaced, but rows for plans removed from the file are not deleted.
 import json
 import os
 import sys
