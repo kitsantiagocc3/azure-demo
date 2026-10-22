@@ -1,6 +1,8 @@
 "use client";
 
+import axios from "axios";
 import { FormEvent, useEffect, useRef, useState } from "react";
+import defaultPlans from "../api/data/plans.json";
 
 type PlanKind = "mobile" | "fiber";
 type Plan = {
@@ -13,98 +15,10 @@ type Plan = {
   features: string[];
   featured?: boolean;
 };
-const plans: Record<PlanKind, Plan[]> = {
-  mobile: [
-    {
-      name: "The everyday",
-      eyebrow: "A little of everything",
-      price: 20,
-      allowance: "15",
-      unit: "GB",
-      detail: "For maps, messages, and your daily soundtrack.",
-      features: [
-        "15 GB of mobile data",
-        "Unlimited talk & text",
-        "Keep your number",
-        "Month-to-month flexibility",
-      ],
-    },
-    {
-      name: "The sweet spot",
-      eyebrow: "Room for more",
-      price: 35,
-      allowance: "50",
-      unit: "GB",
-      detail: "For the group chats, video calls, and one more episode.",
-      features: [
-        "50 GB of mobile data",
-        "Unlimited talk & text",
-        "15 GB mobile hotspot",
-        "Month-to-month flexibility",
-      ],
-      featured: true,
-    },
-    {
-      name: "The all-in",
-      eyebrow: "Go your own way",
-      price: 50,
-      allowance: "100",
-      unit: "GB",
-      detail: "For big days out and everything you bring along.",
-      features: [
-        "100 GB of mobile data",
-        "Unlimited talk & text",
-        "30 GB mobile hotspot",
-        "Month-to-month flexibility",
-      ],
-    },
-  ],
-  fiber: [
-    {
-      name: "Home essentials",
-      eyebrow: "Your everyday connection",
-      price: 40,
-      allowance: "300",
-      unit: "Mbps",
-      detail: "A comfortable fit for a smaller, connected home.",
-      features: [
-        "Up to 300 Mbps download",
-        "Unlimited home data",
-        "Wi-Fi router included",
-        "Month-to-month flexibility",
-      ],
-    },
-    {
-      name: "Home together",
-      eyebrow: "Everyone, online",
-      price: 60,
-      allowance: "500",
-      unit: "Mbps",
-      detail: "Work, stream, and play. There’s room for everyone.",
-      features: [
-        "Up to 500 Mbps download",
-        "Unlimited home data",
-        "Wi-Fi router included",
-        "Month-to-month flexibility",
-      ],
-      featured: true,
-    },
-    {
-      name: "Home without limits",
-      eyebrow: "For your busiest home",
-      price: 80,
-      allowance: "1",
-      unit: "Gbps",
-      detail: "A little extra speed for the way you live.",
-      features: [
-        "Up to 1 Gbps download",
-        "Unlimited home data",
-        "Mesh Wi-Fi kit included",
-        "Month-to-month flexibility",
-      ],
-    },
-  ],
-};
+// Same data the API seeds into the Plans table; shown until (or if) the API responds
+const fallbackPlans = defaultPlans as Record<PlanKind, Plan[]>;
+// Empty on Azure (API served at /api); http://localhost:7071 locally via .env.local
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL ?? "";
 
 function Icon({
   name,
@@ -225,6 +139,8 @@ function ConnectionArtwork() {
 }
 
 export default function Home() {
+  const [plans, setPlans] = useState(fallbackPlans);
+  const [planSource, setPlanSource] = useState<"api" | "built-in">("built-in");
   const [kind, setKind] = useState<PlanKind>("mobile");
   const [menuOpen, setMenuOpen] = useState(false);
   const [selected, setSelected] = useState<Plan | null>(null);
@@ -235,6 +151,18 @@ export default function Home() {
   useEffect(() => {
     if (selected) dialog.current?.showModal();
   }, [selected]);
+
+  useEffect(() => {
+    axios
+      .get<Record<PlanKind, Plan[]>>(`${API_BASE_URL}/api/plans`, { timeout: 5000 })
+      .then(({ data }) => {
+        if (data.mobile?.length && data.fiber?.length) {
+          setPlans(data);
+          setPlanSource("api");
+        }
+      })
+      .catch(() => setPlanSource("built-in"));
+  }, []);
 
   function checkCoverage(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -448,7 +376,10 @@ export default function Home() {
             </div>
             <p className="demo-disclaimer">
               Illustrative plans and USD prices for this training demo. No
-              service is offered for purchase.
+              service is offered for purchase.{" "}
+              {planSource === "api"
+                ? "Plans loaded from the API."
+                : "Showing built-in plans (API not connected)."}
             </p>
           </div>
         </section>
