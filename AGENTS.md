@@ -4,10 +4,9 @@ Fictional telecom site for Azure Static Web Apps training. All plans and prices 
 
 ## Branch state (2026-10-22)
 
-- `main` has the **JavaScript** API (`api/src/functions/plans.js`, `api/package.json`).
-- PR #4 (`chore/azure-deploy-setup`) has the **Python** API (described below). It's **open, not merged**.
-- The paths and commands below are for the **Python branch**. On `main`, use `npm.cmd --prefix api run storage|seed|start` instead.
-- Leftover untracked `api/package.json` and `api/package-lock.json` on the Python branch are old Node files. Don't commit them.
+- `main` has the **Python 3.11** API. PR #4 was merged (merge commit `e2675f2`). The old JavaScript API (`api/src/`, `api/package.json`) is gone.
+- The paths and commands below apply to `main`.
+- Not deployed yet: Kit can't create Azure resources in CC3.
 
 ## Before changing anything
 
