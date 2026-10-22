@@ -1,0 +1,92 @@
+{
+  "mobile": [
+    {
+      "name": "The everyday",
+      "eyebrow": "A little of everything",
+      "price": 20,
+      "allowance": "15",
+      "unit": "GB",
+      "detail": "For maps, messages, and your daily soundtrack.",
+      "features": [
+        "15 GB of mobile data",
+        "Unlimited talk & text",
+        "Keep your number",
+        "Month-to-month flexibility"
+      ]
+    },
+    {
+      "name": "The sweet spot",
+      "eyebrow": "Room for more",
+      "price": 35,
+      "allowance": "50",
+      "unit": "GB",
+      "detail": "For the group chats, video calls, and one more episode.",
+      "features": [
+        "50 GB of mobile data",
+        "Unlimited talk & text",
+        "15 GB mobile hotspot",
+        "Month-to-month flexibility"
+      ],
+      "featured": true
+    },
+    {
+      "name": "The all-in",
+      "eyebrow": "Go your own way",
+      "price": 50,
+      "allowance": "100",
+      "unit": "GB",
+      "detail": "For big days out and everything you bring along.",
+      "features": [
+        "100 GB of mobile data",
+        "Unlimited talk & text",
+        "30 GB mobile hotspot",
+        "Month-to-month flexibility"
+      ]
+    }
+  ],
+  "fiber": [
+    {
+      "name": "Home essentials",
+      "eyebrow": "Your everyday connection",
+      "price": 40,
+      "allowance": "300",
+      "unit": "Mbps",
+      "detail": "A comfortable fit for a smaller, connected home.",
+      "features": [
+        "Up to 300 Mbps download",
+        "Unlimited home data",
+        "Wi-Fi router included",
+        "Month-to-month flexibility"
+      ]
+    },
+    {
+      "name": "Home together",
+      "eyebrow": "Everyone, online",
+      "price": 60,
+      "allowance": "500",
+      "unit": "Mbps",
+      "detail": "Work, stream, and play. There’s room for everyone.",
+      "features": [
+        "Up to 500 Mbps download",
+        "Unlimited home data",
+        "Wi-Fi router included",
+        "Month-to-month flexibility"
+      ],
+      "featured": true
+    },
+    {
+      "name": "Home without limits",
+      "eyebrow": "For your busiest home",
+      "price": 80,
+      "allowance": "1",
+      "unit": "Gbps",
+      "detail": "A little extra speed for the way you live.",
+      "features": [
+        "Up to 1 Gbps download",
+        "Unlimited home data",
+        "Mesh Wi-Fi kit included",
+        "Month-to-month flexibility"
+      ]
+    }
+  ]
+}
