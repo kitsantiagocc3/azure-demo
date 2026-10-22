@@ -4,8 +4,9 @@ Fictional telecom site for Azure Static Web Apps training. All plans and prices 
 
 ## Branch state (2026-10-22)
 
-- `main` has the **Python 3.11** API. PR #4 was merged (merge commit `e2675f2`). The old JavaScript API (`api/src/`, `api/package.json`) is gone.
-- The paths and commands below apply to `main`.
+- PR #4 (`chore/azure-deploy-setup`) was merged into `main` on 2026-10-22 (merge commit `e2675f2`).
+- `main` now has the **Python 3.11** API described below (`api/function_app.py`). The old JavaScript API (`api/src/`, `api/package.json`) is gone; don't add Node files back into `api/`.
+- The paths and commands below apply to this Python implementation.
 - Not deployed yet: Kit can't create Azure resources in CC3.
 
 ## Before changing anything
@@ -17,6 +18,21 @@ Do a read-only baseline:
 4. Check `py -3.11 --version`.
 
 Then report which implementation is present and which commands apply. Don't switch branches while servers are running.
+
+## Development workflow
+
+- Start with the requested outcome, a fictional example, available tools, and boundaries. Use synthetic data only.
+- Before generating files, give a brief three-step plan and identify missing requirements.
+- Build one small working part at a time. Explain unfamiliar lines, keep changes easy to review, and avoid unrelated features.
+- Before running generated code, inspect its file operations, network addresses, dependencies, and commands.
+- Run focused checks and compare the observed behavior with the requirements. Generated output and code review alone do not prove that the app works.
+
+## Frontend workflow
+
+- Use the **Sites skill** (`sites:sites`) and applicable Sites tools when creating or changing the frontend.
+- Preserve this project's Next.js static export, Python API, file structure, dependency limits, and Azure Static Web Apps hosting target.
+- For local-only work, follow the skill's local-only workflow and skip Site registration, source synchronization, and publication.
+- Hosting changes, Azure resources, and deployment still require the existing approval process. Using Sites does not grant deployment approval.
 
 ## Layout
 
