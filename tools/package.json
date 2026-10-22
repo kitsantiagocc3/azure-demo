@@ -1,0 +1,19 @@
+{
+  "name": "relay-local-tools",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Local-only Azure emulators. Not installed by CI or Azure builds.",
+  "scripts": {
+    "storage": "azurite --silent --location ../api/.azurite --skipApiVersionCheck",
+    "api": "cd ../api && call .venv\\Scripts\\activate.bat && func start",
+    "swa": "swa start ../out --api-devserver-url http://localhost:7071"
+  },
+  "devDependencies": {
+    "@azure/static-web-apps-cli": "^2.1.0",
+    "azure-functions-core-tools": "^4.0.0",
+    "azurite": "^3.37.0"
+  },
+  "allowScripts": {
+    "azure-functions-core-tools@4.16.0": true
+  }
+}

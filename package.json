@@ -6,7 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "typecheck": "tsc --noEmit",
-    "swa": "swa start out --api-devserver-url http://localhost:7071"
+    "tools:install": "npm --prefix tools install",
+    "api:install": "cd api && py -3.11 -m venv .venv && .venv\\Scripts\\python -m pip install -r requirements.txt",
+    "storage": "npm --prefix tools run storage",
+    "seed": "cd api && .venv\\Scripts\\python scripts\\seed_plans.py",
+    "api": "npm --prefix tools run api",
+    "swa": "npm --prefix tools run swa"
   },
   "dependencies": {
     "axios": "^1.20.0",
@@ -15,13 +20,12 @@
     "react-dom": "19.3.1"
   },
   "devDependencies": {
-    "@azure/static-web-apps-cli": "^2.1.0",
     "@types/node": "^24.0.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "typescript": "~5.9.3"
   },
   "engines": {
-    "node": ">=24 <25"
+    "node": ">=22 <25"
   }
 }
