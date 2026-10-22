@@ -1,0 +1,6 @@
+.venv/
+__pycache__/
+.azurite/
+scripts/
+local.settings.json
+local.settings.example.json

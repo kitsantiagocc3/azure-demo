@@ -11,6 +11,8 @@ next-env.d.ts
 Thumbs.db
 .azure/
 .azurite/
+.venv/
+__pycache__/
 local.settings.json
 zoho_config.json
 .zoho/
