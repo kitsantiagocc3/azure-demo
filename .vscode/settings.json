@@ -1,0 +1,10 @@
+{
+  "files.exclude": {
+    "node_modules": true,
+    ".next": true,
+    "out": true,
+    ".build": true,
+    "*.tsbuildinfo": true,
+    "next-env.d.ts": true
+  }
+}
